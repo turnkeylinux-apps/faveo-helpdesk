@@ -1,0 +1,55 @@
+#!/bin/bash -ex
+
+DB_NAME=faveo
+DB_USER=faveo
+DB_PASS=$(mcookie)
+
+ADMIN_USER="admin"
+ADMIN_DOMAIN="example.com"
+ADMIN_MAIL="${ADMIN_USER}@${ADMIN_DOMAIN}"
+ADMIN_PASS=turnkey1
+ADMIN_FNAME="TurnKey"
+ADMIN_LNAME="Linux"
+
+SRC=/usr/local/src
+WEBROOT=/var/www/faveo-helpdesk
+CONF=$WEBROOT/.env
+
+LOC_SHARE=/usr/local/share
+LOC_BIN=/usr/local/bin
+
+# install Faveo
+tar xf $SRC/faveo-helpdesk-*.tar.gz -C /var/www
+mv $WEBROOT* $WEBROOT
+rm -f $SRC/faveo-helpdesk-*.tar.gz
+
+service mysql start
+
+mysqladmin create $DB_NAME
+mysql --batch --execute "grant all privileges on $DB_NAME.* to $DB_USER@localhost identified by '$DB_PASS'; flush privileges;"
+
+cd $WEBROOT
+
+sed -i "s|DB_PASS|$DB_PASS|g" $SRC/install.exp
+$SRC/install.exp
+$SRC/populate-db.exp
+
+mysql --batch --execute "update faveo.users set user_name='$ADMIN_USER', first_name='$ADMIN_FNAME', last_name='$ADMIN_LNAME' where id='1';"
+/usr/lib/inithooks/bin/faveo-helpdesk.py --email="$ADMIN_MAIL" --pass="$ADMIN_PASS"
+
+php $WEBROOT/artisan config:cache
+php $WEBROOT/artisan key:generate --force
+php $WEBROOT/artisan config:clear
+
+chown -R www-data:www-data $WEBROOT
+
+# not sure why this app appears to be the only one that complains about this; but...
+chmod 1733 /var/lib/php/sessions
+
+a2dissite 000-default
+a2ensite faveo-helpdesk
+a2enmod rewrite
+
+service mysql stop
+
+apt purge --autoremove expect -y

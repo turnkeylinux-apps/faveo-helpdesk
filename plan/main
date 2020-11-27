@@ -1,0 +1,22 @@
+#include <turnkey/base>
+#include <turnkey/lamp>
+
+python3-bcrypt
+
+php-curl
+php-json
+php-mbstring
+php-gd
+php-ldap
+php-zip
+php-bcmath
+php-xml
+php-imap
+php-redis
+
+redis-server
+supervisor
+
+unzip
+
+expect      /* Used to interact with interactive php aritsan commands */
