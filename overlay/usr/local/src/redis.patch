@@ -1,0 +1,22 @@
+--- config/queue.php.orig	2020-11-27 03:58:36.238576939 +0000
++++ config/queue.php	2020-11-27 03:59:13.266674310 +0000
+@@ -16,7 +16,7 @@
+       |
+      */
+ 
+-    'default' => 'sync',
++    'default' => 'redis',
+     /*
+       |--------------------------------------------------------------------------
+       | Queue Connections
+@@ -60,8 +60,8 @@
+             'encrypt' => true,
+         ],
+         'redis' => [
+-            'driver' => '',
+-            'queue'  => '',
++            'driver' => 'redis',
++            'queue'  => 'default',
+             'expire' => 60,
+         ],
+     ],

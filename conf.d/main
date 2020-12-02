@@ -46,10 +46,21 @@ chown -R www-data:www-data $WEBROOT
 # not sure why this app appears to be the only one that complains about this; but...
 chmod 1733 /var/lib/php/sessions
 
+# finalise redis config
+cd $WEBROOT/config
+git apply $SRC/redis.patch
+# Also update DB settings
+mysql --batch --execute "update faveo.queue_services set status=0 where short_name='sync';"
+mysql --batch --execute "update faveo.queue_services set status=1 where short_name='redis';"
+COLUMNS="\`service_id\`, \`key\`, \`value\`, \`created_at\`, \`updated_at\`"
+mysql --batch --execute "insert into faveo.faveo_queues (${COLUMNS}) values (6, 'driver', 'redis', NOW(), NOW()), (6, 'queue', 'default', NOW(), NOW());"
+
 a2dissite 000-default
 a2ensite faveo-helpdesk
 a2enmod rewrite
 
 service mysql stop
 
+# cleanup
+rm $SRC/{*.exp,*.patch}
 apt purge --autoremove expect -y
