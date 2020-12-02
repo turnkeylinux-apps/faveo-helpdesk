@@ -1,4 +1,4 @@
-turnkey-faveo-helpdesk--16.0 (1) turnkey; urgency=low
+turnkey-faveo-helpdesk-16.0 (1) turnkey; urgency=low
 
   * Initial release includes Faveo Helpdesk v1.10.7; installed from tarball;
     based on TurnKey LAMP.
