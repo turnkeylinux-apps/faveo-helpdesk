@@ -4,7 +4,7 @@ Faveo Helpdesk - Open Source Helpdesk & Support Ticketing
 `Faveo Helpdesk`_ is an automated Helpdesk system to allow you to manage
 customer support. It is built on the popular Laravel PHP framework. The
 TurnKey appliance includes the open source Community Edition, but the Faveo
-developers also a number of paid versions (hosted or self hosted).
+developers also offer a number of paid versions (hosted or self hosted).
 
 To complete the experience, Faveo developers also provide free Community
 Edition Android_ and iOS_ apps. Faveo Helpdesk provides usage and upgrade
