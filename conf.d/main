@@ -21,12 +21,16 @@ LOC_BIN=/usr/local/bin
 # install Faveo
 tar xf $SRC/faveo-helpdesk-*.tar.gz -C /var/www
 mv $WEBROOT* $WEBROOT
+chown -R www-data:www-data $WEBROOT
 rm -f $SRC/faveo-helpdesk-*.tar.gz
 
 service mysql start
 
 mysqladmin create $DB_NAME
 mysql --batch --execute "grant all privileges on $DB_NAME.* to $DB_USER@localhost identified by '$DB_PASS'; flush privileges;"
+
+# Ensure that turnkey-artisan knows where webroot is
+sed -i "\|^export WEBROOT| s|=.*|="$WEBROOT"|" /usr/local/bin/turnkey-artisan
 
 cd $WEBROOT
 
@@ -37,9 +41,9 @@ $SRC/populate-db.exp
 mysql --batch --execute "update faveo.users set user_name='$ADMIN_USER', first_name='$ADMIN_FNAME', last_name='$ADMIN_LNAME' where id='1';"
 /usr/lib/inithooks/bin/faveo-helpdesk.py --email="$ADMIN_MAIL" --pass="$ADMIN_PASS"
 
-php $WEBROOT/artisan config:cache
-php $WEBROOT/artisan key:generate --force
-php $WEBROOT/artisan config:clear
+turnkey-artisan config:cache
+turnkey-artisan key:generate --force
+turnkey-artisan config:clear
 
 chown -R www-data:www-data $WEBROOT
 
