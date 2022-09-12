@@ -1,7 +1,7 @@
 #include <turnkey/base>
 #include <turnkey/lamp72>
 
-python3-bcrypt
+argon2
 
 /* install specific versions as using non-standard PHP */
 php7.2-common

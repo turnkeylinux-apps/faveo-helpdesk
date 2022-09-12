@@ -8,10 +8,10 @@ Option:
 
 import sys
 import getopt
-import bcrypt
+from argon2 import PasswordHasher
 from mysqlconf import MySQL
 
-from dialog_wrapper import Dialog
+from libinithooks.dialog_wrapper import Dialog
 import inithooks_cache
 
 
@@ -57,9 +57,10 @@ def main():
 
     inithooks_cache.write('APP_EMAIL', email)
 
-    salt = bcrypt.gensalt()
-    hashpass = bcrypt.hashpw(password.encode('utf8'), salt).decode('utf8')
-    
+    ph = PasswordHasher()
+    hashpass = ph.hash(password)
+
+
     m = MySQL()
     m.execute('UPDATE faveo.users SET password=%s WHERE id=1;', (hashpass,))
     m.execute('UPDATE faveo.users SET email=%s WHERE id=1;', (email,))

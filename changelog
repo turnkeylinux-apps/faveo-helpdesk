@@ -1,3 +1,13 @@
+turnkey-faveo-helpdesk-16.2 (1) turnkey; urgency=low
+
+  * Update Faveo Helpdesk and its dependencies to tkldev v17.0.
+
+  * Update libinithooks dialog_wrapper to refactored version for v17.
+
+  * Replace bcrypt package with argon2 for hashing mechanism.
+
+ -- Mattie Darden <mattie@turnkeylinux.org>  Mon, 12 Sep 2022 19:03:26 +0000
+
 turnkey-faveo-helpdesk-16.1 (1) turnkey; urgency=low
 
   * Update Faveo Helpdesk to v1.11.0.
