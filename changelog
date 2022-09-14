@@ -1,4 +1,4 @@
-turnkey-faveo-helpdesk-16.2 (1) turnkey; urgency=low
+turnkey-faveo-helpdesk-17.0 (1) turnkey; urgency=low
 
   * Update Faveo Helpdesk and its dependencies to tkldev v17.0.
 
@@ -6,7 +6,9 @@ turnkey-faveo-helpdesk-16.2 (1) turnkey; urgency=low
 
   * Replace bcrypt package with argon2 for hashing mechanism.
 
- -- Mattie Darden <mattie@turnkeylinux.org>  Mon, 12 Sep 2022 19:03:26 +0000
+  * Update php version to 7.3 in Makefile and plan/main.
+
+ -- Mattie Darden <mattie@turnkeylinux.org>  Wed, 14 Sep 2022 19:03:26 +0000
 
 turnkey-faveo-helpdesk-16.1 (1) turnkey; urgency=low
 
