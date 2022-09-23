@@ -4,11 +4,11 @@ turnkey-faveo-helpdesk-17.0 (1) turnkey; urgency=low
 
   * Update libinithooks dialog_wrapper to refactored version for v17.
 
-  * Replace bcrypt package with argon2 for hashing mechanism.
-
   * Update php version to 7.3 in Makefile and plan/main.
 
- -- Mattie Darden <mattie@turnkeylinux.org>  Wed, 14 Sep 2022 19:03:26 +0000
+  * Include "php extra pins" needed for appliance package versions.
+
+ -- Mattie Darden <mattie@turnkeylinux.org>  Fri, 23 Sep 2022 19:03:26 +0000
 
 turnkey-faveo-helpdesk-16.1 (1) turnkey; urgency=low
 
