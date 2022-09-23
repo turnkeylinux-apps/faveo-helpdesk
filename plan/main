@@ -15,7 +15,6 @@ libapache2-mod-php7.3
 php7.3-cli
 python3-bcrypt
 
-
 /* install specific versions as using non-standard PHP */
 php7.3-curl
 php7.3-json
