@@ -60,7 +60,6 @@ def main():
     salt = bcrypt.gensalt()
     hashpass = bcrypt.hashpw(password.encode('utf8'), salt).decode('utf8')
     
-
     m = MySQL()
     m.execute('UPDATE faveo.users SET password=%s WHERE id=1;', (hashpass,))
     m.execute('UPDATE faveo.users SET email=%s WHERE id=1;', (email,))
