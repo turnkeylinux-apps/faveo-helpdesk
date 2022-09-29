@@ -1,6 +1,8 @@
 #include <turnkey/base>
 #include <turnkey/lamp73>
 
+python3-bcrypt
+
 /* install specific versions as using non-standard PHP */
 php7.3-common
 php7.3-curl
