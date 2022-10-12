@@ -8,10 +8,9 @@ turnkey-faveo-helpdesk-17.0 (1) turnkey; urgency=low
 
   * Include "php extra pins" needed for appliance package versions.
 
-  * Update relies on common PR#228 which updates lamp plan for php7.3 and 
-    changes to order of pin priority in conf/bootstrap_apt.
+  * Update relies on common PR#228 which updates lamp plan for php7.3.
 
- -- Mattie Darden <mattie@turnkeylinux.org>  Fri, 23 Sep 2022 19:03:26 +0000
+ -- Mattie Darden <mattie@turnkeylinux.org>  Wed, 12 Oct 2022 19:03:26 +0400
 
 turnkey-faveo-helpdesk-16.1 (1) turnkey; urgency=low
 
