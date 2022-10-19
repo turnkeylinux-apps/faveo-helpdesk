@@ -9,10 +9,10 @@ Option:
 import sys
 import getopt
 import bcrypt
-from mysqlconf import MySQL
 
-from dialog_wrapper import Dialog
-import inithooks_cache
+from mysqlconf import MySQL
+from libinithooks.dialog_wrapper import Dialog
+from libinithooks import inithooks_cache
 
 
 def usage(s=None):
