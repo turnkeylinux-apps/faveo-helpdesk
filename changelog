@@ -2,6 +2,8 @@ turnkey-faveo-helpdesk-17.0 (1) turnkey; urgency=low
 
   * Update Faveo Helpdesk and its dependencies to tkldev v17.0.
 
+  * Fix cron job - closes #1776. Thanks to @maksun.
+
   * Update libinithooks dialog_wrapper to refactored version for v17.
 
   * Update php version to 7.3 in Makefile and plan/main.
@@ -10,7 +12,7 @@ turnkey-faveo-helpdesk-17.0 (1) turnkey; urgency=low
 
   * Update relies on common PR#228 which updates lamp plan for php7.3.
 
- -- Mattie Darden <mattie@turnkeylinux.org>  Wed, 12 Oct 2022 19:03:26 +0400
+ -- Mattie Darden <mattie@turnkeylinux.org>  Sat, 12 Nov 2022 20:27:00 +0000
 
 turnkey-faveo-helpdesk-16.1 (1) turnkey; urgency=low
 
