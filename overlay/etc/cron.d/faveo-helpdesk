@@ -1,2 +1,2 @@
 # Faveo Helpdesk cron job to run any scheduled tasks every minute
-* * * * * /usr/bin/php /var/www/faveo-helpdesk/artisan schedule:run > /dev/null 2>&1
+* * * * * www-data /usr/bin/php /var/www/faveo-helpdesk/artisan schedule:run > /dev/null 2>&1
