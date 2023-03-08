@@ -1,3 +1,14 @@
+turnkey-faveo-helpdesk-17.1 (1) turnkey; urgency=low
+
+  * Update Faveo Helpdesk and its dependencies to tkldev v17.1.
+
+  * Update php version to 8.1 in Makefile and plan/main. 
+
+  * Rebuilding appliance with newest upstream software. Appliance now uses
+    Faveo Helpdesk version 2.0.0.
+
+ -- root <root@tkldev>  Wed, 08 Mar 2023 00:32:30 +0000
+
 turnkey-faveo-helpdesk-17.0 (1) turnkey; urgency=low
 
   * Update Faveo Helpdesk and its dependencies to tkldev v17.0.

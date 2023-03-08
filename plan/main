@@ -1,34 +1,24 @@
 #include <turnkey/base>
 #include <turnkey/mysql>
+#include <turnkey/lamp81>
 
-/* default lamp plan */
-apache2
-webmin-apache
+php8.1-mysql
+libapache2-mod-php8.1
+php8.1-cli
 
-webmin-phpini
-
-adminer
-
-/* if you need these components for PHP 5.6 see lamp56 plan */
-
-php7.3-mysql
-libapache2-mod-php7.3
-php7.3-cli
-
-argon2
+python3-argon2
 
 /* install specific versions as using non-standard PHP */
-php7.3-common
-php7.3-curl
-php7.3-json
-php7.3-mbstring
-php7.3-gd
-php7.3-ldap
-php7.3-zip
-php7.3-bcmath
-php7.3-xml
-php7.3-imap
-php7.3-redis
+php8.1-common
+php8.1-curl
+php8.1-mbstring
+php8.1-gd
+php8.1-ldap
+php8.1-zip
+php8.1-bcmath
+php8.1-xml
+php8.1-imap
+php8.1-redis
 
 redis-server
 supervisor
