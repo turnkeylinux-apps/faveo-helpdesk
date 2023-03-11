@@ -1,6 +1,6 @@
-turnkey-faveo-helpdesk-17.1 (1) turnkey; urgency=low
+turnkey-faveo-helpdesk-17.2 (1) turnkey; urgency=low
  
- * Update Faveo Helpdesk and its dependencies to tkldev v17.1.
+  * Update Faveo Helpdesk and its dependencies to tkldev v17.1.
 
   * Update php version to 8.1 in Makefile and plan/main. 
 
@@ -8,6 +8,16 @@ turnkey-faveo-helpdesk-17.1 (1) turnkey; urgency=low
     Faveo Helpdesk version 2.0.0.
 
  --Mattie Darden <mattie@turnkeylinux.org>  Wed, 08 Mar 2023 00:32:30 +0000
+
+turnkey-faveo-helpdesk-17.1 (1) turnkey; urgency=low
+
+  * Updated all Debian packages to latest.
+    [ autopatched by buildtasks ]
+
+  * Patched bugfix release. Closes #1734.
+    [ autopatched by buildtasks ]
+
+ -- Jeremy Davis <jeremy@turnkeylinux.org>  Wed, 14 Dec 2022 02:48:39 +0000
 
 turnkey-faveo-helpdesk-17.0 (1) turnkey; urgency=low
 
