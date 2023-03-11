@@ -1,25 +1,29 @@
 turnkey-faveo-helpdesk-17.1 (1) turnkey; urgency=low
-
-  * Update Faveo Helpdesk and its dependencies to tkldev v17.1.
+ 
+ * Update Faveo Helpdesk and its dependencies to tkldev v17.1.
 
   * Update php version to 8.1 in Makefile and plan/main. 
 
   * Rebuilding appliance with newest upstream software. Appliance now uses
     Faveo Helpdesk version 2.0.0.
 
- -- root <root@tkldev>  Wed, 08 Mar 2023 00:32:30 +0000
+ --Mattie Darden <mattie@turnkeylinux.org>  Wed, 08 Mar 2023 00:32:30 +0000
 
 turnkey-faveo-helpdesk-17.0 (1) turnkey; urgency=low
 
   * Update Faveo Helpdesk and its dependencies to tkldev v17.0.
 
-  * Update libinithooks dialog_wrapper to refactored version for v17.
+  * Fix cron job - closes #1776. Thanks to @maksun.
 
-  * Replace bcrypt package with argon2 for hashing mechanism.
+  * Update libinithooks dialog_wrapper to refactored version for v17.
 
   * Update php version to 7.3 in Makefile and plan/main.
 
- -- Mattie Darden <mattie@turnkeylinux.org>  Wed, 14 Sep 2022 19:03:26 +0000
+  * Include "php extra pins" needed for appliance package versions.
+
+  * Update relies on common PR#228 which updates lamp plan for php7.3.
+
+ -- Mattie Darden <mattie@turnkeylinux.org>  Sat, 12 Nov 2022 20:27:00 +0000
 
 turnkey-faveo-helpdesk-16.1 (1) turnkey; urgency=low
 
