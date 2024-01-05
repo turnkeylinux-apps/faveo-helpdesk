@@ -52,7 +52,6 @@ chmod 1733 /var/lib/php/sessions
 
 # finalise redis config
 cd $WEBROOT/config
-git apply $SRC/redis.patch
 # Also update DB settings
 mysql --batch --execute "update faveo.queue_services set status=0 where short_name='sync';"
 mysql --batch --execute "update faveo.queue_services set status=1 where short_name='redis';"
@@ -66,5 +65,4 @@ a2enmod rewrite
 systemctl stop  mysql
 
 # cleanup
-rm $SRC/{*.exp,*.patch}
 apt purge --autoremove expect -y
