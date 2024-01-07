@@ -41,6 +41,12 @@ $SRC/populate-db.exp
 mysql --batch --execute "update faveo.users set user_name='$ADMIN_USER', first_name='$ADMIN_FNAME', last_name='$ADMIN_LNAME' where id='1';"
 /usr/lib/inithooks/bin/faveo-helpdesk.py --email="$ADMIN_MAIL" --pass="$ADMIN_PASS"
 
+#Ensuring queue.php file is configured correctly before artisan commands run
+echo "QUEUE_CONNECTION=redis" >> $CONF
+cd $WEBROOT/bootstrap/cache/
+rm -rf *.php
+cd $WEBROOT
+
 turnkey-artisan config:cache
 turnkey-artisan key:generate --force
 turnkey-artisan config:clear
