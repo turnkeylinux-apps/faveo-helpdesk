@@ -10,3 +10,10 @@ URL="https://github.com/ladybirdweb/faveo-helpdesk/archive/refs/tags/${VERSION}.
 SRC=/usr/local/src
 
 dl $URL $SRC
+
+
+#install inoncube loader
+systemctl restart apache2
+wget http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
+tar -xvf ioncube_loaders_lin_x86-64.tar.gz
+cp ioncube/ioncube_loader_lin_8.2.so /usr/lib/php/20220829
