@@ -18,6 +18,31 @@ CONF=$WEBROOT/.env
 LOC_SHARE=/usr/local/share
 LOC_BIN=/usr/local/bin
 
+#install inoncube loader
+systemctl restart apache2
+wget http://downloads3.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
+tar -xvf ioncube_loaders_lin_x86-64.tar.gz
+cp ioncube/ioncube_loader_lin_8.2.so /usr/lib/php/20220829
+
+#Update php related config files for ioncube loader
+sed -i '2 a zend_extension = "/usr/lib/php/20220829/ioncube_loader_lin_8.2.so"' /etc/php/8.2/apache2/php.ini
+sed -i '2 a zend_extension = "/usr/lib/php/20220829/ioncube_loader_lin_8.2.so"' /etc/php/8.2/cli/php.ini
+sed -i '2 a zend_extension = "/usr/lib/php/20220829/ioncube_loader_lin_8.2.so"' /etc/php/8.2/fpm/php.ini
+sed -i 's/upload_max_filesize =.*/upload_max_filesize = 100M/g' /etc/php/8.2/apache2/php.ini
+sed -i 's/post_max_size =.*/post_max_size = 100M/g' /etc/php/8.2/apache2/php.ini
+sed -i 's/max_execution_time =.*/max_execution_time = 360/g' /etc/php/8.2/apache2/php.ini
+sed -i 's/upload_max_filesize =.*/upload_max_filesize = 100M/g' /etc/php/8.2/cli/php.ini
+sed -i 's/post_max_size =.*/post_max_size = 100M/g' /etc/php/8.2/cli/php.ini
+sed -i 's/max_execution_time =.*/max_execution_time = 360/g' /etc/php/8.2/cli/php.ini 
+sed -i 's/upload_max_filesize =.*/upload_max_filesize = 100M/g' /etc/php/8.2/fpm/php.ini
+sed -i 's/post_max_size =.*/post_max_size = 100M/g' /etc/php/8.2/fpm/php.ini
+sed -i 's/max_execution_time =.*/max_execution_time = 360/g' /etc/php/8.2/fpm/php.ini 
+
+#enable php-fpm for ioncube loader
+a2enconf php8.2-fpm
+service php8.2-fpm restart
+systemctl restart apache2
+
 # install Faveo
 tar xf $SRC/faveo-helpdesk-*.tar.gz -C /var/www
 mv $WEBROOT* $WEBROOT
@@ -46,6 +71,9 @@ echo "QUEUE_CONNECTION=redis" >> $CONF
 cd $WEBROOT/bootstrap/cache/
 rm -rf *.php
 cd $WEBROOT
+
+#Disabling bugsnag debbuging service
+sed -i "\|^APP_BUGSNAG|s|=.*|=false|" $WEBROOT/.env
 
 turnkey-artisan config:cache
 turnkey-artisan key:generate --force
