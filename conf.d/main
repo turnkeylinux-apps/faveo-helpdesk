@@ -18,14 +18,14 @@ CONF=$WEBROOT/.env
 LOC_SHARE=/usr/local/share
 LOC_BIN=/usr/local/bin
 
-#Update php related config files for ioncube loader
-sed -i '2 a zend_extension = "/usr/lib/php/20220829/ioncube_loader_lin_8.2.so"' /etc/php/8.2/apache2/php.ini
-sed -i '2 a zend_extension = "/usr/lib/php/20220829/ioncube_loader_lin_8.2.so"' /etc/php/8.2/cli/php.ini
+#Finish ioncube loader install
+tar xf $SRC/ioncube_loaders_lin_x86-64.tar.gz -C $SRC/
+mv $SRC/ioncube/ioncube_loader_lin_8.2.so /usr/lib/php/20220829/
+rm -rf $SRC/ioncube*
 
-#enable php-fpm for ioncube loader
-a2enconf php8.2-fpm
-service php8.2-fpm restart
-systemctl restart apache2
+#Update php related config files for ioncube loader
+sed -i '2 a zend_extension = "/usr/lib/php/20220829/ioncube_loader_lin_8.2.so"' /etc/php/?.?/apache2/php.ini
+sed -i '2 a zend_extension = "/usr/lib/php/20220829/ioncube_loader_lin_8.2.so"' /etc/php/?.?/cli/php.ini
 
 # install Faveo
 tar xf $SRC/faveo-helpdesk-*.tar.gz -C /var/www
