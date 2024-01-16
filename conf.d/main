@@ -18,13 +18,22 @@ CONF=$WEBROOT/.env
 LOC_SHARE=/usr/local/share
 LOC_BIN=/usr/local/bin
 
+#Finish ioncube loader install
+tar xf $SRC/ioncube_loaders_lin_x86-64.tar.gz -C $SRC/
+mv $SRC/ioncube/ioncube_loader_lin_8.2.so /usr/lib/php/20220829/
+rm -rf $SRC/ioncube*
+
+#Update php related config files for ioncube loader
+sed -i '2 a zend_extension = "/usr/lib/php/20220829/ioncube_loader_lin_8.2.so"' /etc/php/?.?/apache2/php.ini
+sed -i '2 a zend_extension = "/usr/lib/php/20220829/ioncube_loader_lin_8.2.so"' /etc/php/?.?/cli/php.ini
+
 # install Faveo
 tar xf $SRC/faveo-helpdesk-*.tar.gz -C /var/www
 mv $WEBROOT* $WEBROOT
 chown -R www-data:www-data $WEBROOT
 rm -f $SRC/faveo-helpdesk-*.tar.gz
 
-service mysql start
+systemctl start  mysql
 
 mysqladmin create $DB_NAME
 mysql --batch --execute "grant all privileges on $DB_NAME.* to $DB_USER@localhost identified by '$DB_PASS'; flush privileges;"
@@ -41,6 +50,15 @@ $SRC/populate-db.exp
 mysql --batch --execute "update faveo.users set user_name='$ADMIN_USER', first_name='$ADMIN_FNAME', last_name='$ADMIN_LNAME' where id='1';"
 /usr/lib/inithooks/bin/faveo-helpdesk.py --email="$ADMIN_MAIL" --pass="$ADMIN_PASS"
 
+#Ensuring queue.php file is configured correctly before artisan commands run
+echo "QUEUE_CONNECTION=redis" >> $CONF
+rm -rf $WEBROOT/bootstrap/cache/*.php
+
+#Disabling bugsnag debbuging service
+sed -i "\|^APP_BUGSNAG|s|=.*|=false|" $WEBROOT/.env
+
+chown -R www-data:www-data $WEBROOT
+
 turnkey-artisan config:cache
 turnkey-artisan key:generate --force
 turnkey-artisan config:clear
@@ -52,7 +70,6 @@ chmod 1733 /var/lib/php/sessions
 
 # finalise redis config
 cd $WEBROOT/config
-git apply $SRC/redis.patch
 # Also update DB settings
 mysql --batch --execute "update faveo.queue_services set status=0 where short_name='sync';"
 mysql --batch --execute "update faveo.queue_services set status=1 where short_name='redis';"
@@ -63,8 +80,7 @@ a2dissite 000-default
 a2ensite faveo-helpdesk
 a2enmod rewrite
 
-service mysql stop
+systemctl stop  mysql
 
 # cleanup
-rm $SRC/{*.exp,*.patch}
 apt purge --autoremove expect -y

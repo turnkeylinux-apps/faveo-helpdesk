@@ -1,3 +1,20 @@
+turnkey-faveo-helpdesk-18.0 (1) turnkey; urgency=low
+
+  * Installing ioncube loader for faveo-heldesk dependency.
+
+  * Disabling bugsnag dubugging service for faveo-helpdesk because it 
+    causes errors during install.
+
+  * Update Faveo Helpdesk and its dependencies to tkldev v18.0.
+
+  * Removing PHP v7.3 requirements as faveo-helpdesk upstream software 
+    now runs on PHP v8.2+.
+
+  * Note: Please refer to turnkey-core's 18.0 changelog for changes common to
+    all appliances. Here we only describe changes specific to this appliance.
+
+ -- Mattie Darden <mattie@turnkeylinux.org>  Sat, 09 Dec 2023 02:06:59 +0000
+
 turnkey-faveo-helpdesk-17.1 (1) turnkey; urgency=low
 
   * Updated all Debian packages to latest.
