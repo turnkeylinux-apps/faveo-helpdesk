@@ -33,7 +33,7 @@ mv $WEBROOT* $WEBROOT
 chown -R www-data:www-data $WEBROOT
 rm -f $SRC/faveo-helpdesk-*.tar.gz
 
-systemctl start  mysql
+systemctl start mysql
 
 mysqladmin create $DB_NAME
 mysql --batch --execute "grant all privileges on $DB_NAME.* to $DB_USER@localhost identified by '$DB_PASS'; flush privileges;"
@@ -80,7 +80,10 @@ a2dissite 000-default
 a2ensite faveo-helpdesk
 a2enmod rewrite
 
-systemctl stop  mysql
+systemctl stop mysql
+
+# disable redirect www.xxx.xxx -> xxx.xxx
+sed -i "\|^Rewrite|s|^|#|" $WEBROOT/public/.htaccess
 
 # cleanup
 apt purge --autoremove expect -y
