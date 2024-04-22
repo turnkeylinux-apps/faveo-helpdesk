@@ -20,6 +20,11 @@ turnkey-faveo-helpdesk-18.0 (1) turnkey; urgency=low
   * Redirect http -> https as http doesn't load assets and looks broken.
     [Jeremy Davis <jeremy@turnkeylinux.org>]
 
+  * Disable default faveo-heldesk htaccess redirect: www.example.com ->
+    example.com - causing issues with clicksnap & may cause unexecpected
+    results for end users.
+    [Jeremy Davis <jeremy@turnkeylinux.org>]
+
   * Confconsole: bugfix broken DNS-01 Let's Encrypt challenge- closes #1876 &
     #1895.
     [Jeremy Davis <jeremy@turnkeylinux.org>]
