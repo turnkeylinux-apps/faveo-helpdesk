@@ -29,12 +29,23 @@ Credentials *(passwords set at first boot)*
 
 -  Faveo Helpdesk: username is **admin**
 
+Updating Faveo Helpdesk
+-----------------------
+
+The appliance installs the supported Faveo Helpdesk Community release from
+the official upstream repository. Before updating, create a TKLBAM or
+equivalent backup, review the upstream release notes and follow the official
+`Faveo upgrade documentation`_. The application runs its database migrations
+with ``turnkey-artisan database:sync`` after updated application files have
+been installed.
+
 .. _Faveo Helpdesk: https://www.faveohelpdesk.com/
 .. _Android: https://play.google.com/store/apps/details?id=co.helpdesk.faveo
 .. _iOS: https://apps.apple.com/in/app/faveo-helpdesk-community/id1185454914
-.. _wiki: https://github.com/ladybirdweb/faveo-helpdesk/wiki
-.. _API: https://github.com/ladybirdweb/faveo-helpdesk/wiki/API-Documentation
-.. _plugins: https://github.com/ladybirdweb/faveo-helpdesk/wiki/Faveo-Plugin-creation-guide
+.. _wiki: https://github.com/faveosuite/faveo-helpdesk/wiki
+.. _API: https://github.com/faveosuite/faveo-helpdesk/wiki/API-Documentation
+.. _plugins: https://github.com/faveosuite/faveo-helpdesk/wiki/Faveo-Plugin-creation-guide
+.. _Faveo upgrade documentation: https://docs.faveohelpdesk.com/docs/installation/installer/cli/
 .. _TurnKey Core: https://www.turnkeylinux.org/core
 .. _Adminer: https://www.adminer.org/
 .. _Postfix: https://www.postfix.org/

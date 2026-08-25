@@ -1,3 +1,20 @@
+turnkey-faveo-helpdesk-19.0 (1) turnkey; urgency=low
+
+  * Upgrade the appliance base to Debian 13 Trixie with PHP 8.4, MariaDB,
+    Apache, Redis and Supervisor from signed Debian repositories.
+
+  * Install the supported Faveo Helpdesk Community v2.0.3 release from its
+    current official repository and verify the source archive digest.
+
+  * Adapt the installer to PHP 8.4 output, remove the obsolete IonCube setup
+    and remove a Supervisor entry for the unavailable Horizon command.
+
+  * Add focused runtime acceptance for administrator login, ticket
+    persistence, background workers, scheduled work and documented TurnKey
+    administration endpoints.
+
+ -- TurnKey GNU/Linux <admin@turnkeylinux.org>  Tue, 25 Aug 2026 05:35:00 +0000
+
 turnkey-faveo-helpdesk-18.0 (1) turnkey; urgency=low
 
   * Update Faveo-Helpdesk to v2.0.3.
