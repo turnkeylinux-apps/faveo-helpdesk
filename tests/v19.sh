@@ -88,9 +88,9 @@ redis-cli ping | grep -Fxq PONG
 timeout 20 runuser -u www-data -- php /var/www/faveo-helpdesk/artisan \
     queue:work redis --once --no-interaction
 supervisorctl status >"$page"
-grep -q '^faveo-worker_.*RUNNING' "$page"
-grep -q '^faveo-recur_.*RUNNING' "$page"
-grep -q '^faveo-Reports_.*RUNNING' "$page"
+grep -q '^faveo-worker:faveo-worker_.*RUNNING' "$page"
+grep -q '^faveo-recur:faveo-recur_.*RUNNING' "$page"
+grep -q '^faveo-Reports:faveo-Reports_.*RUNNING' "$page"
 ! grep -Eq 'BACKOFF|FATAL|EXITED' "$page"
 grep -Fxq '* * * * * www-data /usr/bin/php /var/www/faveo-helpdesk/artisan schedule:run > /dev/null 2>&1' \
     /etc/cron.d/faveo-helpdesk
