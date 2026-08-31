@@ -1,14 +1,11 @@
 #!/bin/bash -ex
 
-dl() {
-    [ "$FAB_HTTP_PROXY" ] && PROXY="--proxy $FAB_HTTP_PROXY"
-    cd $2; curl -L -f -O -J $PROXY $1; cd -
-}
-
-VERSION=$(gh_releases ladybirdweb/faveo-helpdesk | grep -v '^v\.' | sort -V | tail -1)
-URL="https://github.com/ladybirdweb/faveo-helpdesk/archive/refs/tags/${VERSION}.tar.gz"
-URL2="https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz"
+VERSION=v2.0.3
+ARCHIVE=faveo-helpdesk-${VERSION#v}.tar.gz
+SHA256=8b42f15c164a2e7cdf87ab53ed00c3c806ac7efa96e201405886fe559af93252
+URL="https://github.com/faveosuite/faveo-helpdesk/archive/refs/tags/${VERSION}.tar.gz"
 SRC=/usr/local/src
 
-dl $URL $SRC
-dl $URL2 $SRC
+[ "$FAB_HTTP_PROXY" ] && PROXY="--proxy $FAB_HTTP_PROXY"
+curl -L -f -o "$SRC/$ARCHIVE" $PROXY "$URL"
+echo "$SHA256  $SRC/$ARCHIVE" | sha256sum --check

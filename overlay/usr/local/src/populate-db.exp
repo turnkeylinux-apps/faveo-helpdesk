@@ -45,24 +45,10 @@ if {$force_conservative} {
 set timeout -1
 spawn php artisan install:db
 match_max 100000
-expect -exact "\r
- \[32mDo you want to migrate tables now? (yes/no)\[39m \[\[33mno\[39m\]:\r
- > "
+expect "Do you want to migrate tables now?"
 send -- "yes\r"
-expect -exact "yes\r
-\r
- \[32mWould you like to install dummy data in database to test before going live? (yes/no)\[39m \[\[33mno\[39m\]:\r
- > "
+expect "Would you like to install dummy data"
 send -- "no\r"
-expect "\[32mseeded successfully\[39m\r
-+------------+-------+----------+\r
-|\[32m user_name  \[39m|\[32m email \[39m|\[32m password \[39m|\r
-+------------+-------+----------+\r
-| demo_admin |       | demopass |\r
-+------------+-------+----------+\r
-\[33mPlease update your email and change the password immediately\[39m\r
-\r
- \[32mEnter your app url (with http/https and www/non www)\[39m:\r
- > "
+expect "Enter your app url"
 send -- "http://localhost\r"
 expect eof

@@ -12,7 +12,6 @@ php-ldap
 php-zip
 php-bcmath
 php-xml
-php-imap
 php-redis
 
 /* php extensions required by faveo-helpdesk */
@@ -21,9 +20,8 @@ php-mysql
 php-cli
 php-soap
 php-opcache
-php8.2-intl
+php-intl
 php-gmp
-libapache2-mod-php
 php-memcached
 
 redis-server
